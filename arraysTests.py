@@ -33,6 +33,7 @@ class Tests:
             {"input":("aaa","aaa"), "expected": True}
         ]
 
+        
         for i, test_case in enumerate(test_cases):
             s = test_case["input"][0]
             t = test_case["input"][1]
@@ -40,6 +41,17 @@ class Tests:
             result = self.solution.validAnagram(s,t)
             assert result == expected, f"Test case {i+1} failed: Input s:{s} and t:{t} | Expected {expected} | Got {result}"
             print(f"Test case {i+1} passed: Input s:{s} and t:{t}  | Output {result}")
+
+    def test_twosum(self):
+        test_cases = [
+            {"input":([2, 6, 4], 8), "expected": []},
+            {"input":([2, 6, 4], 8), "expected": False},
+            {"input":([2, 6, 4], 8), "expected": True},
+            {"input":([2, 6, 4], 8), "expected": False},
+            {"input":([2, 6, 4], 8), "expected": False},
+            {"input":([2, 6, 4], 8), "expected": True}
+        ]
+    
 
 
 # Run the tests
