@@ -128,7 +128,7 @@ class Solutions:
                 prefix[i] = suffix[-1]*prefix[i]
     
         return prefix
-        
+            
 
 solution = Solutions()
 result = solution.validAnagram("", "raa")
