@@ -1,3 +1,4 @@
+from collections import Counter
 class Solutions:
     def twoSum(self, nums: list[int], target:int):
         pass
@@ -88,4 +89,29 @@ class Solutions:
                 end = mid - 1
         return bound
 
+    def equalFrequency(self, word):
+         # Count the frequency of each character
+        counter = Counter(word)
+        keys = list(counter.keys())  # Collect keys beforehand to avoid modifying the dictionary during iteration
+
+        for letter in keys:
+            # Decrease the frequency of the current letter
+            counter[letter] -= 1
+            if counter[letter] == 0:
+                del counter[letter]  # Remove the letter if frequency is zero
+            
+            # Get the unique frequencies of the remaining letters
+            freq_set = set(counter.values())
+            
+            # Check if the unique frequencies are valid
+            if len(freq_set) == 1:  # All frequencies are the same
+                return True
+            
+            # Restore the original frequency of the letter
+            if letter in counter:
+                counter[letter] += 1
+            else:
+                counter[letter] = 1  # Re-add the letter if it was removed
+        
+        return False
     
