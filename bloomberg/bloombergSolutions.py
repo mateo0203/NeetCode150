@@ -114,4 +114,18 @@ class Solutions:
                 counter[letter] = 1  # Re-add the letter if it was removed
         
         return False
+    def stringMatching(self, words):
+        #Input: array of strings
+        #return all strings in words that is a substring of another words
+        result = set()
+        for word in words:
+            for wordT in words:
+                if wordT == word:
+                    continue
+                else:
+                    if word in wordT:
+                        result.add(word)
+        return list(result)
+
+
     
