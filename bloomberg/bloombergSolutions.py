@@ -127,5 +127,34 @@ class Solutions:
                         result.add(word)
         return list(result)
 
+    def countPalindromicSubsequence(self, s: str) -> int:
+        if len(s) == 0:
+            return []
+        if len(s) == 1:
+            return [s]
+        
+        result = 0
+        leftSet = set()
+        rightDict = dict()
+        visited = set()
+        #create the rightDict
+        for i in range(1, len(s)):
+            try:
+                rightDict[s[i]] += 1
+            except:
+                rightDict[s[i]] = 1
+
+        for i in range(1,len(s)):
+            rightDict[s[i]] -= 1
+            if rightDict[s[i]] == 0:
+                del rightDict[s[i]]
+            leftSet.add(s[i-1])
+            for letter in leftSet:
+                if letter in rightDict:
+                    if letter + s[i] + letter not in visited:
+                        result += 1
+                        visited.add(letter + s[i] + letter)
+        return result
+
 
     
