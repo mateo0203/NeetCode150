@@ -31,3 +31,27 @@ class Solutions:
                 rightP -= 1
             else:
                 leftP += 1
+
+    def countPrefixSuffixPairs(self, words: List[str]) -> int:
+        """
+        #input: words (string array)
+
+        such that i < j, and isPrefixAndSuffix(words[i], words[j]) is true.
+        Return an integer denoting the number of index pairs (i, j) 
+
+        Example: ["a","aba","ababa","aa"] -- brute force O(n^2*avg_str_size)
+
+        """
+
+        counter = 0
+        for i in range(len(words)):
+            for j in range(i+1, len(words)):
+                if self.isPrefixAndSuffix(words[i], words[j]):
+                    counter += 1
+        return counter
+    
+    def isPrefixAndSuffix(self, word1, word2):
+        if word1 > word2:
+            return False
+        elif word2.startswith(word1) and word2.endswith(word1):
+            return True
