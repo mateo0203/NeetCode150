@@ -37,7 +37,7 @@ class Solutions:
         return nums1
     
 
-    def maxProfit(self, prices: List[int]) -> int:
+    def maxProfit(self, prices: list[int]) -> int:
         """
         Input: prices = [7,1,5,3,6,4]
         Output: 5
@@ -63,7 +63,7 @@ class Solutions:
                 rightP += 1
         return maxProfit
     
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
+    def searchRange(self, nums: list[int], target: int) -> list[int]:
         # Find the start and end bounds
         startIdx = self.findBound(nums, target, isLeft=True)
         if startIdx == -1:  # Target not found
@@ -156,5 +156,37 @@ class Solutions:
                         visited.add(letter + s[i] + letter)
         return result
 
-
+    def subsets(self, nums: list[int]) -> list[list[int]]:
+        #backtracking approach of choosing or not choosing an Option
+        #[1, 2, 3]
+        if len(nums) == 0:
+            return []
+        res = []
+        res += self.dfs(nums, [], 0)
+        return res
     
+    def dfs(self, nums, subset, index):
+        res = []
+        if index >= len(nums):
+            return [subset]
+        subsetA = subset + [nums[index]]
+        res += self.dfs(nums, subsetA, index+1)
+        res += self.dfs(nums, subset, index+1)
+        return res
+    
+    def subsequences(self, aStr: str) -> list[str]:
+        if len(aStr) == 0:
+            return []
+        res = []
+        return sorted(res + self.dfsS(aStr, "", 0))
+
+    def dfsS(self, aStr, subseq, index):
+        res = []
+        if index >= len(aStr):
+            return [subseq]
+        subseqA = subseq + aStr[index]
+        res += self.dfsS(aStr, subseqA, index+1)
+        res += self.dfsS(aStr, subseq, index+1)
+        return res
+
+    "abcde" 
